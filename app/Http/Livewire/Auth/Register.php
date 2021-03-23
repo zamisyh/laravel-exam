@@ -46,7 +46,6 @@ class Register extends Component
         try {
 
 
-
             $user = User::create([
                 'email' => $this->email,
                 'name' => $this->username,
