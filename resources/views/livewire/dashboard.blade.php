@@ -1,10 +1,19 @@
 <div>
-    @section('title', 'Dashboard')
+   
 
-    <div id="app">
+    {{-- @if ($openRegisterSiswa)
+            @section('title', 'Siswa Next Register')
+            @livewire('admin.components.register-siswa') 
+       @elseif($openRegisterGuru)
+            @section('title', 'Guru Next Register')
+            @livewire('admin.components.register-guru')
+       @else --}}
+
+       @section('title', 'Dashboard')
+       <div id="app">
         <x-sidebar />
         <div id="main" class='layout-navbar'>
-             @include('components.navbar')
+            @livewire('admin.components.navbar')
             <div id="main-content">
 
                 <div class="page-heading">
@@ -46,5 +55,9 @@
             </div>
         </div>
     </div>
+
+    {{-- @endif --}}
+
+    
 
 </div>
