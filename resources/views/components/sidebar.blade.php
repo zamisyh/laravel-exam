@@ -15,7 +15,7 @@
                 <li class="sidebar-title">Menu</li>
 
                 <li class="sidebar-item">
-                    <a href="index.html" class='sidebar-link'>
+                    <a href="{{ route('dashboard.home') }}" class='sidebar-link'>
                         <i class="bi bi-grid-fill"></i>
                         <span>Dashboard</span>
                     </a>
@@ -29,11 +29,30 @@
                     </a>
                     <ul class="submenu ">
                         <li class="submenu-item ">
-                            <a href="ui-chart-chartjs.html">Permission</a>
+                            <a href="{{ route('dashboard.role') }}">Role</a>
                         </li>
                         <li class="submenu-item ">
-                            <a href="ui-chart-apexcharts.html">Role</a>
+                            <a href="{{ route('dashboard.permission') }}">Permission</a>
                         </li>
+                        <li class="submenu-item ">
+                            <a href="{{ route('dashboard.users') }}">Users</a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li class="sidebar-item has-sub">
+                    <a href="#" class='sidebar-link'>
+                        <i class="bi bi-file-bar-graph"></i>
+                        <span>Data</span>
+                    </a>
+                    <ul class="submenu ">
+                        <li class="submenu-item ">
+                            <a href="{{ route('dashboard.majors') }}">Majors</a>
+                        </li>
+                        <li class="submenu-item ">
+                            <a href="{{ route('dashboard.class') }}">Class</a>
+                        </li>
+                        
                     </ul>
                 </li>
             </ul>
