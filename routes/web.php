@@ -9,6 +9,7 @@ use App\Http\Livewire\Admin\Roles\Permission;
 use App\Http\Livewire\Admin\Users;
 use App\Http\Livewire\Admin\Src\Jurusan;
 use App\Http\Livewire\Admin\Src\Kelas;
+use App\Http\Livewire\Admin\Src\Mapel;
 
 /*
 |--------------------------------------------------------------------------
@@ -51,6 +52,7 @@ Route::prefix('dashboard')->group(function () {
 
                     Route::get('majors', Jurusan::class)->name('majors');
                     Route::get('class', Kelas::class)->name('class');
+                    Route::get('mapel', Mapel::class)->name('mapel');
                 });
             });
         });
