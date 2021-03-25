@@ -15,4 +15,9 @@ class kelas extends Model
     {
         return $this->belongsTo(jurusan::class);
     }
+
+    public function mapel()
+    {
+        return $this->belongsToMany(mapel::class);
+    }
 }
