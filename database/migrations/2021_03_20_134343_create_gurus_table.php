@@ -21,13 +21,13 @@ class CreateGurusTable extends Migration
             $table->string('jenis_kelamin');
             $table->string('agama');
             $table->string('alamat');
-            $table->unsignedBigInteger('mapel_id');
-            $table->unsignedBigInteger('kelas_id');
+            // $table->unsignedBigInteger('mapel_id');
+            // $table->unsignedBigInteger('kelas_id');
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
-            $table->foreign('kelas_id')->references('id')->on('kelas')->onDelete('cascade')->onUpdate('cascade');
-            $table->foreign('mapel_id')->references('id')->on('mapel')->onDelete('cascade')->onUpdate('cascade');
+            // $table->foreign('kelas_id')->references('id')->on('kelas')->onDelete('cascade')->onUpdate('cascade');
+            // $table->foreign('mapel_id')->references('id')->on('mapel')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 
