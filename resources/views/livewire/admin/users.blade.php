@@ -142,10 +142,14 @@
                                                 </td>
                                                 <td>
 
-                                                    @if ($user->is_active == 0)
-                                                            <span class="badge bg-danger">Inactive</span>
-                                                        @else
+                                            
+
+                                                    @if ($user->is_active == 0 && $user->getRoleNames()[0] == 'admin')
+                                                            <span class="badge bg-primary">Admin</span>
+                                                        @elseif($user->is_active == 1)
                                                             <span class="badge bg-success">Active</span>
+                                                        @else
+                                                            <span class="badge bg-danger">Inactive</span>
                                                     @endif
 
                                                 </td>
