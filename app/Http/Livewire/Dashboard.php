@@ -6,6 +6,7 @@ use Livewire\Component;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use App\Models\guru;
+use App\Models\mapel;
 use App\Models\siswa;
 
 class Dashboard extends Component
@@ -29,7 +30,9 @@ class Dashboard extends Component
 
     public function render()
     {
-        return view('livewire.dashboard')->extends('layouts.app')->section('content');
+        $data = guru::where('user_id', Auth::user()->id)->get();
+
+        return view('livewire.dashboard', compact('data'))->extends('layouts.app')->section('content');
     }
 
 
