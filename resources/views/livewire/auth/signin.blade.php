@@ -36,6 +36,13 @@
                             </div>
                         </div>
 
+                        <div class="form-check form-check-lg d-flex align-items-end">
+                            <input class="form-check-input me-2" type="checkbox" id="flexCheckDefault" required>
+                            <label class="form-check-label text-gray-600" for="flexCheckDefault">
+                               Keep me sign in
+                            </label>
+                        </div>
+
                     @if ($redirect)
                         <script>
                             setTimeout(function () {
