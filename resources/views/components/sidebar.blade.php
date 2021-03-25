@@ -22,39 +22,45 @@
                 </li>
 
 
-                <li class="sidebar-item has-sub">
-                    <a href="#" class='sidebar-link'>
-                        <i class="bi bi-person-lines-fill"></i>
-                        <span>Manajamen User</span>
-                    </a>
-                    <ul class="submenu ">
-                        <li class="submenu-item ">
-                            <a href="{{ route('dashboard.role') }}">Role</a>
-                        </li>
-                        <li class="submenu-item ">
-                            <a href="{{ route('dashboard.permission') }}">Permission</a>
-                        </li>
-                        <li class="submenu-item ">
-                            <a href="{{ route('dashboard.users') }}">Users</a>
-                        </li>
-                    </ul>
-                </li>
+                @role('admin')
+                    <li class="sidebar-item has-sub">
+                        <a href="#" class='sidebar-link'>
+                            <i class="bi bi-person-lines-fill"></i>
+                            <span>Manajamen User</span>
+                        </a>
+                        <ul class="submenu ">
+                            <li class="submenu-item ">
+                                <a href="{{ route('dashboard.role') }}">Role</a>
+                            </li>
+                            <li class="submenu-item ">
+                                <a href="{{ route('dashboard.permission') }}">Permission</a>
+                            </li>
+                            <li class="submenu-item ">
+                                <a href="{{ route('dashboard.users') }}">Users</a>
+                            </li>
+                        </ul>
+                    </li>
 
-                <li class="sidebar-item has-sub">
-                    <a href="#" class='sidebar-link'>
-                        <i class="bi bi-file-bar-graph"></i>
-                        <span>Data</span>
-                    </a>
-                    <ul class="submenu ">
-                        <li class="submenu-item ">
-                            <a href="{{ route('dashboard.majors') }}">Majors</a>
-                        </li>
-                        <li class="submenu-item ">
-                            <a href="{{ route('dashboard.class') }}">Class</a>
-                        </li>
-                        
-                    </ul>
-                </li>
+                    <li class="sidebar-item has-sub">
+                        <a href="#" class='sidebar-link'>
+                            <i class="bi bi-file-bar-graph"></i>
+                            <span>Data</span>
+                        </a>
+                        <ul class="submenu ">
+                            <li class="submenu-item ">
+                                <a href="{{ route('dashboard.majors') }}">Majors</a>
+                            </li>
+                            <li class="submenu-item ">
+                                <a href="{{ route('dashboard.class') }}">Class</a>
+                            </li>
+                            <li class="submenu-item ">
+                                <a href="{{ route('dashboard.mapel') }}">Mapel</a>
+                            </li>
+                            
+                        </ul>
+                    </li>
+                @endrole
+                
             </ul>
         </div>
         <button class="sidebar-toggler btn x"><i data-feather="x"></i></button>
