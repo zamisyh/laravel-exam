@@ -1,13 +1,13 @@
 <div>
    
 
-    {{-- @if ($openRegisterSiswa)
+    @if ($openRegisterSiswa)
             @section('title', 'Siswa Next Register')
             @livewire('admin.components.register-siswa') 
        @elseif($openRegisterGuru)
             @section('title', 'Guru Next Register')
             @livewire('admin.components.register-guru')
-       @else --}}
+       @else
 
        @section('title', 'Dashboard')
        <div id="app">
@@ -40,11 +40,7 @@
                                 <h4 class="card-title">Example Content</h4>
                             </div>
                             <div class="card-body">
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur quas omnis
-                                laudantium tempore
-                                exercitationem, expedita aspernatur sed officia asperiores unde tempora maxime odio
-                                reprehenderit
-                                distinctio incidunt! Vel aspernatur dicta consequatur!
+                               
                             </div>
                         </div>
                     </section>
@@ -56,7 +52,7 @@
         </div>
     </div>
 
-    {{-- @endif --}}
+    @endif
 
     
 
