@@ -3,7 +3,7 @@
 
         @section('css')
             <link rel="stylesheet" href="{{ asset('assets/css/pages/auth.css') }}">
-            <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+            <link rel="stylesheet" href="{{ asset('assets/vendors/select2/select2.min.css') }}">
         @endsection
     
         <div id="auth">
@@ -126,8 +126,8 @@
     </div>
 
     @section('js')  
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+        <script src="{{ asset('assets/vendors/select2/jquery.js') }}"></script>
+        <script src="{{ asset('assets/vendors/select2/select2.min.js') }}"></script>
       
         
       
