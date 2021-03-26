@@ -38,6 +38,7 @@
                             <li class="submenu-item ">
                                 <a href="{{ route('dashboard.users') }}">Users</a>
                             </li>
+                            
                         </ul>
                     </li>
 
@@ -56,7 +57,9 @@
                             <li class="submenu-item ">
                                 <a href="{{ route('dashboard.mapel') }}">Mapel</a>
                             </li>
-                            
+                            <li class="submenu-item ">
+                                <a href="{{ route('dashboard.teacher') }}">Teacher</a>
+                            </li>
                         </ul>
                     </li>
                 @endrole
