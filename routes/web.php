@@ -10,6 +10,7 @@ use App\Http\Livewire\Admin\Users;
 use App\Http\Livewire\Admin\Src\Jurusan;
 use App\Http\Livewire\Admin\Src\Kelas;
 use App\Http\Livewire\Admin\Src\Mapel;
+use App\Http\Livewire\Admin\Src\Guru;
 
 /*
 |--------------------------------------------------------------------------
@@ -41,7 +42,14 @@ Route::prefix('dashboard')->group(function () {
 
             Route::group(['middleware' => ['role:admin']], function () {
                 Route::get('/role', Role::class)->name('role');
-                Route::get('/permission', Permission::class)->name('permission');
+                Route::get('/permission', function () {
+                    return response()->json([
+                        'response' => [
+                            'status' => '401',
+                            'message' => 'The developer has disabled this page'
+                        ]
+                    ], 401);
+                })->name('permission');
                 Route::get('/users', Users::class)->name('users');
 
                 Route::prefix('data')->group(function () {
@@ -53,6 +61,7 @@ Route::prefix('dashboard')->group(function () {
                     Route::get('majors', Jurusan::class)->name('majors');
                     Route::get('class', Kelas::class)->name('class');
                     Route::get('mapel', Mapel::class)->name('mapel');
+                    Route::get('teacher', Guru::class)->name('teacher');
                 });
             });
         });
