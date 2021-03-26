@@ -13,6 +13,10 @@ class guru extends Model
 
     protected $fillable = ['nama', 'nip', 'jenis_kelamin', 'agama', 'alamat',  'user_id'];
 
+    public function jurusan()
+    {
+        return $this->belongsTo(jurusan::class);
+    }
 
     public function kelas()
     {
