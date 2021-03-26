@@ -40,7 +40,15 @@
                                 <h4 class="card-title">Example Content</h4>
                             </div>
                             <div class="card-body">
-                               
+                                @foreach ($data as $item)
+                                     @foreach ($item->mapel as $mpl)
+                                         {{ $mpl->nama }}
+                                     @endforeach
+
+                                     @foreach ($item->kelas as $kls)
+                                         {{ $kls->nama }}
+                                     @endforeach
+                                @endforeach
                             </div>
                         </div>
                     </section>
