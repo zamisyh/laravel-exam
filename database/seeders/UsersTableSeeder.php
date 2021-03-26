@@ -20,9 +20,9 @@ class UsersTableSeeder extends Seeder
     {
 
         $role = [
-            ['name' => 'admin', 'guard_name' => 'web'],
-            ['name' => 'guru', 'guard_name' => 'web'],
-            ['name' => 'siswa', 'guard_name' => 'web'],
+            ['name' => 'admin', 'guard_name' => 'web', 'created_at' => \Carbon\Carbon::now(), 'updated_at' =>  \Carbon\Carbon::now()],
+            ['name' => 'guru', 'guard_name' => 'web', 'created_at' => \Carbon\Carbon::now(), 'updated_at' =>  \Carbon\Carbon::now()],
+            ['name' => 'siswa', 'guard_name' => 'web', 'created_at' => \Carbon\Carbon::now(), 'updated_at' =>  \Carbon\Carbon::now()],
         ];
 
         Role::insert($role);
@@ -37,18 +37,18 @@ class UsersTableSeeder extends Seeder
 
 
         $jurusan = [
-            ['nama' => 'Rekayasa Perangkat Lunak', 'alias' => 'RPL'],
-            ['nama' => 'Perbankan Syariah', 'alias' => 'PBS'],
-            ['nama' => 'Perbankan', 'alias' => 'PB'],
-            ['nama' => 'Kimia Analis', 'alias' => 'KA'],
-            ['nama' => 'Teknik Elektronika Industri', 'alias' => 'TEI'],
+            ['nama' => 'Rekayasa Perangkat Lunak', 'alias' => 'RPL', 'created_at' => \Carbon\Carbon::now(), 'updated_at' =>  \Carbon\Carbon::now()],
+            ['nama' => 'Perbankan Syariah', 'alias' => 'PBS', 'created_at' => \Carbon\Carbon::now(), 'updated_at' =>  \Carbon\Carbon::now()],
+            ['nama' => 'Perbankan', 'alias' => 'PB', 'created_at' => \Carbon\Carbon::now(), 'updated_at' =>  \Carbon\Carbon::now()],
+            ['nama' => 'Kimia Analis', 'alias' => 'KA', 'created_at' => \Carbon\Carbon::now(), 'updated_at' =>  \Carbon\Carbon::now()],
+            ['nama' => 'Teknik Elektronika Industri', 'alias' => 'TEI', 'created_at' => \Carbon\Carbon::now(), 'updated_at' =>  \Carbon\Carbon::now()],
         ];
 
         $mapel = [
-            ['nama' => 'Matematika'],
-            ['nama' => 'Pendidikan Agama Islam'],
-            ['nama' => 'Bahasa Inggris'],
-            ['nama' => 'Bahasa Indonesia'],
+            ['nama' => 'Matematika', 'created_at' => \Carbon\Carbon::now(), 'updated_at' =>  \Carbon\Carbon::now()],
+            ['nama' => 'Pendidikan Agama Islam', 'created_at' => \Carbon\Carbon::now(), 'updated_at' =>  \Carbon\Carbon::now()],
+            ['nama' => 'Bahasa Inggris', 'created_at' => \Carbon\Carbon::now(), 'updated_at' =>  \Carbon\Carbon::now()],
+            ['nama' => 'Bahasa Indonesia', 'created_at' => \Carbon\Carbon::now(), 'updated_at' =>  \Carbon\Carbon::now()],
         ];
 
         mapel::insert($mapel);
