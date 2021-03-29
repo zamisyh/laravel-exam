@@ -9,4 +9,9 @@ class GuruMapel extends Model
 {
     use HasFactory;
     protected $fillable = ['guru_id', 'mapel_id'];
+
+    public function mpl()
+    {
+        return $this->belongsTo(mapel::class);
+    }
 }
