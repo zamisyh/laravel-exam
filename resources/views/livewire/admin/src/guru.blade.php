@@ -52,9 +52,9 @@
                                     <thead>
                                         <tr>
                                             <th>#</th>
-                                            <th>Nama</th>
+                                            <th>Name</th>
                                             <th>NIP</th>
-                                            <th>Jenis Kelamin</th>
+                                            <th>Gender</th>
                                             <th>Created At</th>
                                             <th>Action</th>
                                         </tr>

@@ -29,7 +29,7 @@
                 <tbody>
                     @foreach ($dataTeacher as $item)
                         <tr>
-                            <td>Nama</td>
+                            <td>Name</td>
                             <td>{{ $item->nama }}</td>
                         </tr>
                         <tr>
@@ -37,19 +37,19 @@
                             <td>{{ $item->nip }}</td>
                         </tr>
                         <tr>
-                            <td>Jenis Kelamin</td>
+                            <td>Gender</td>
                             <td>{{ ucwords($item->jenis_kelamin) }}</td>
                         </tr>
                         <tr>
-                            <td>Agama</td>
+                            <td>Religion</td>
                             <td>{{ ucwords($item->agama )}}</td>
                         </tr>
                         <tr>
-                            <td>Alamat</td>
+                            <td>Address</td>
                             <td>{{ $item->alamat }}</td>
                         </tr>
                         <tr>
-                            <td>Mapel Yang Diajar</td>
+                            <td>Mapels</td>
                             <td>
                                 <ul style="list-style: none">
                                     @foreach ($item->mapel as $mpl)
@@ -59,7 +59,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <td>Kelas Yang Diajar</td>
+                            <td>Class</td>
                             <td>
                                 <ul style="list-style: none">
                                     @foreach ($item->kelas as $kls)
