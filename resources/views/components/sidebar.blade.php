@@ -60,6 +60,9 @@
                             <li class="submenu-item ">
                                 <a href="{{ route('dashboard.teacher') }}">Teacher</a>
                             </li>
+                            <li class="submenu-item ">
+                                <a href="{{ route('dashboard.student') }}">Student</a>
+                            </li>
                         </ul>
                     </li>
                 @endrole
