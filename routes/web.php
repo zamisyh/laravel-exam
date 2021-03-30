@@ -11,6 +11,7 @@ use App\Http\Livewire\Admin\Src\Jurusan;
 use App\Http\Livewire\Admin\Src\Kelas;
 use App\Http\Livewire\Admin\Src\Mapel;
 use App\Http\Livewire\Admin\Src\Guru;
+use App\Http\Livewire\Admin\Src\Siswa as Student;
 
 /*
 |--------------------------------------------------------------------------
@@ -62,6 +63,7 @@ Route::prefix('dashboard')->group(function () {
                     Route::get('class', Kelas::class)->name('class');
                     Route::get('mapel', Mapel::class)->name('mapel');
                     Route::get('teacher', Guru::class)->name('teacher');
+                    Route::get('student', Student::class)->name('student');
                 });
             });
         });
