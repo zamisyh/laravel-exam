@@ -41,21 +41,32 @@
                                                 <label class="input-group-text"
                                                     for="inputGroupSelect01"><i class="bi bi-filter"></i></label>
                                                 <select class="form-select" wire:model='search' id="inputGroupSelect01">
-                                                    <option value="default" selected>Default</option>
+                                                    <option value="default">Default</option>
                                                     <option value="class">Class</option>
                                                     <option value="name">Name</option>
                                                     <option value="nis">Nis</option>
                                                 </select>
                                             </div>
 
-                                            @if ($search)
-                                                <input type="text" class="form-control" placeholder="Search {{ $search }}">
+                                           
+                                            
+
+                                            @if ($search == 'class')
+                                                <input type="text" class="form-control" id="myInput" onkeyup="myFunction()" placeholder="Search class" >
+                                            
+                                            @elseif($search == 'default')
+                                                <span></span>
+                                           
+                                            @elseif($search)
+                                                <input type="text" wire:model='searchData' class="form-control" placeholder="Search {{ $search }}">
+                                            
+                        
                                             @endif
                                            
                                        </div>
 
                                        <div>
-                                           <select class="form-select">
+                                           <select class="form-select" wire:model='row_page'>
                                                <option value="10" selected>10 row</option>
                                                <option value="25">25 row</option>
                                                <option value="50">50 row</option>
@@ -80,7 +91,7 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @foreach ($student as $item)
+                                            @forelse ($student as $item)
                                                <tr>
                                                     <td>{{ $loop->iteration }}</td>
                                                     <td>{{ ucwords(strtolower($item->nama)) }}</td>
@@ -98,8 +109,12 @@
                                                         <button wire:click='deleteSiswa({{$item->id}})' class="btn btn-danger btn-sm"><i class="bi bi-trash-fill"></i></button>&nbsp;
                                                         <button wire:click='editSiswa({{$item->id}})' class="btn btn-primary btn-sm"><i class="bi bi-pencil-square"></i></button>
                                                     </td>
+                                                    
+                                                    @empty
+                                                    <td>No Data Found</td>
+
                                                </tr>
-                                            @endforeach
+                                            @endforelse
                                         </tbody>
                                     </table>
 
@@ -116,6 +131,31 @@
                 <x-footer />
                
             </div>
+
+            @section('js')
+            <script>
+                function myFunction() {
+                  var input, filter, table, tr, td, i, txtValue;
+                  input = document.getElementById("myInput");
+                  filter = input.value.toUpperCase();
+                  table = document.getElementById("list_majors");
+                  tr = table.getElementsByTagName("tr");
+                  for (i = 0; i < tr.length; i++) {
+                    td = tr[i].getElementsByTagName("td")[4];
+                    if (td) {
+                      txtValue = td.textContent || td.innerText;
+                      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                      } else {
+                        tr[i].style.display = "none";
+                        
+                      }
+                    }       
+                  }
+                }
+                </script>
+            @endsection
+
         </div>
     </div>
 

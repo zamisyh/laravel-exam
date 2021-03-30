@@ -17,7 +17,7 @@ class Siswa extends Component
     protected $listeners = ['confirmed'];
 
 
-    public $search;
+    public $search, $searchData;
     public $row_page = 10;
     public $openEdit;
 
@@ -25,7 +25,17 @@ class Siswa extends Component
 
     public function render()
     {
-        $student = Student::with('kelas', 'jurusan', 'user')->orderBy('created_at', 'DESC')->paginate($this->row_page);
+
+
+
+        if ($this->search == 'name') {
+            $student = Student::where('nama', 'LIKE', '%' . ucwords(strtolower($this->searchData)) . '%')->with('kelas', 'jurusan', 'user')->orderBy('created_at', 'DESC')->paginate($this->row_page);
+        } elseif ($this->search == 'nis') {
+            $student = Student::where('nis', 'LIKE', '%' . $this->searchData . '%')->with('kelas', 'jurusan', 'user')->orderBy('created_at', 'DESC')->paginate($this->row_page);
+        } else {
+            $student = Student::with('kelas', 'jurusan', 'user')->orderBy('created_at', 'DESC')->orderBy('created_at', 'DESC')->paginate($this->row_page);
+        }
+
         $data['data']['majors'] = jurusan::orderBy('created_at', 'DESC')->get();
         $data['data']['class'] = kelas::with('jurusan')->orderBy('created_at', 'DESC')->get();
         return view('livewire.admin.src.siswa', $data, compact('student'))->extends('layouts.app')->section('content');
@@ -50,7 +60,7 @@ class Siswa extends Component
     public function updateSiswa($id)
     {
         $data = Student::find($id);
-        $data->nama = $this->name;
+        $data->nama = ucwords(strtolower($this->name));
         $data->nis = $this->nis;
         $data->agama = $this->religion;
         $data->jenis_kelamin = $this->gender;

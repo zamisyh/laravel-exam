@@ -36,7 +36,7 @@ class RegisterSiswa extends Component
         try {
 
             siswa::create([
-                'nama' => $this->name,
+                'nama' => ucwords(strtolower($this->name)),
                 'nis' => $this->nis,
                 'jenis_kelamin' => $this->gender,
                 'agama' => $this->religion,
