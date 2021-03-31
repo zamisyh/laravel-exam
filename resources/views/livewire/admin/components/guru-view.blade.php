@@ -62,8 +62,10 @@
                             <td>Class</td>
                             <td>
                                 <ul style="list-style: none">
-                                    @foreach ($item->kelas as $kls)
-                                        <li>{{ $kls->nama }} {{ $dataJurusan->alias }} {{ $kls->no }}</li>
+                                    @foreach ($dataTeacher as $item)
+                                        @foreach ($item->kelas as $kelas)
+                                            <li> {{ $kelas->nama }} {{ $kelas->jurusan->alias }} {{ $kelas->no }}</li>
+                                        @endforeach
                                     @endforeach
                                 </ul>
                             </td>
