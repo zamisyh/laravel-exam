@@ -26,8 +26,8 @@
                             <div class="col-12 col-md-6 order-md-2 order-first">
                                 <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
                                     <ol class="breadcrumb">
-                                        <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
-                                        <li class="breadcrumb-item active" aria-current="page">Layout Vertical Navbar
+                                        <li class="breadcrumb-item"><a href="{{ route('dashboard.home') }}">Dashboard</a></li>
+                                        <li class="breadcrumb-item active" aria-current="page">Home
                                         </li>
                                     </ol>
                                 </nav>
@@ -40,15 +40,7 @@
                                 <h4 class="card-title">Example Content</h4>
                             </div>
                             <div class="card-body">
-                                @foreach ($data as $item)
-                                     @foreach ($item->mapel as $mpl)
-                                         {{ $mpl->nama }}
-                                     @endforeach
-
-                                     @foreach ($item->kelas as $kls)
-                                         {{ $kls->nama }}
-                                     @endforeach
-                                @endforeach
+                               
                             </div>
                         </div>
                     </section>
