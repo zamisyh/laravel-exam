@@ -38,5 +38,10 @@
 
 
     @yield('js')
+    @yield('modal')
+
+
+ 
+    
 </body>
 </html>
