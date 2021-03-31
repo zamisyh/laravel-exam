@@ -55,9 +55,16 @@
                         <li>
                             <h6 class="dropdown-header">Hello, {{ ucwords(strtolower(Auth::user()->name)) }}</h6>
                         </li>
-                        <li><a class="dropdown-item" href="#"><i class="icon-mid bi bi-person me-2"></i> My
+                        @role('guru')
+                            <li><a class="dropdown-item" href="{{ route('dashboard.profile') }}"><i class="icon-mid bi bi-person me-2"></i> My
                                 Profile</a></li>
-                        <li><a class="dropdown-item" href="#"><i class="icon-mid bi bi-gear me-2"></i>
+                        @endrole
+
+                        @role('siswa')
+                            <li><a class="dropdown-item" href="{{ route('dashboard.profile') }}"><i class="icon-mid bi bi-person me-2"></i> My
+                                Profile</a></li>
+                        @endrole
+                        <li><a class="dropdown-item" href="{{ route('dashboard.setting') }}"><i class="icon-mid bi bi-gear me-2"></i>
                                 Settings</a></li>
                             <hr class="dropdown-divider">
                         </li>
