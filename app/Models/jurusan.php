@@ -10,4 +10,7 @@ class jurusan extends Model
     use HasFactory;
     protected $fillable = ['nama', 'alias'];
     protected $table = 'jurusan';
+
+
+  
 }
