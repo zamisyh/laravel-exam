@@ -27,7 +27,7 @@ class Guru extends Component
     {
         $data['data']['guru'] = Teacher::orderBy('created_at', 'DESC')->get();
         $data['data']['mapels'] = mapel::orderBy('created_at', 'DESC')->get();
-        $data['data']['class'] = kelas::with('jurusan')->orderBy('nama', 'DESC')->get();
+        $data['data']['class'] = kelas::orderBy('nama', 'DESC')->get();
 
         return view('livewire.admin.src.guru', $data)->extends('layouts.app')->section('content');
     }
@@ -35,7 +35,7 @@ class Guru extends Component
     public function viewForm($id)
     {
         $data = Teacher::find($id);
-        $this->dataJurusan = jurusan::where('id', $data->id)->first();
+       
         $this->name = $data->nama;
         $this->dataId = $data->id;
 
@@ -46,7 +46,7 @@ class Guru extends Component
         // $this->religion = $data->agama;
         // $this->address = $data->alamat;
 
-        $this->dataTeacher = Teacher::where('id', $id)->get();
+        $this->dataTeacher = Teacher::where('id', $id)->with('kelas.jurusan')->get();
 
 
         $this->viewForm = true;
@@ -91,10 +91,11 @@ class Guru extends Component
             $data->nip = $this->nip;
             $data->jenis_kelamin = $this->gender;
             $data->agama = $this->religion;
-            $data->alamat = $this->religion;
+            $data->alamat = $this->address;
 
             $data->kelas()->sync($this->class);
             $data->mapel()->sync($this->mapel);
+            $data->update();
 
             $this->resetForm();
             $this->editForm = false;
