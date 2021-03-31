@@ -12,6 +12,8 @@ use App\Http\Livewire\Admin\Src\Kelas;
 use App\Http\Livewire\Admin\Src\Mapel;
 use App\Http\Livewire\Admin\Src\Guru;
 use App\Http\Livewire\Admin\Src\Siswa as Student;
+use App\Http\Livewire\Settings\Profile;
+use App\Http\Livewire\Settings\ChangeUser;
 
 /*
 |--------------------------------------------------------------------------
@@ -66,6 +68,14 @@ Route::prefix('dashboard')->group(function () {
                     Route::get('student', Student::class)->name('student');
                 });
             });
+
+            //Page for manajemen profile
+
+            Route::group(['middleware' => ['role:siswa|guru']], function () {
+                Route::get('profile', Profile::class)->name('profile');
+            });
+
+            Route::get('profile/setting', ChangeUser::class)->name('setting');
         });
     });
 });
