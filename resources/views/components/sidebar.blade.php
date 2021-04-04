@@ -66,6 +66,28 @@
                         </ul>
                     </li>
                 @endrole
+
+                @role('guru')
+                    <li class="sidebar-item has-sub">
+                        <a href="#" class='sidebar-link'>
+                            <i class="bi bi-person-lines-fill"></i>
+                            <span>Manajemen Quiz</span>
+                        </a>
+                        <ul class="submenu ">
+                            <li class="submenu-item ">
+                                <a href="{{ route('dashboard.bank_soal') }}">Bank Soal</a>
+                            </li>
+                            <li class="submenu-item ">
+                                <a href="">Quiz</a>
+                            </li>
+                            <li class="submenu-item ">
+                                <a href="">Essay</a>
+                            </li>
+                            
+                            
+                        </ul>
+                    </li>
+                @endrole
                 
             </ul>
         </div>

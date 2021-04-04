@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateUjianSettingsTable extends Migration
+class CreateSoalsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,18 @@ class CreateUjianSettingsTable extends Migration
      */
     public function up()
     {
-        Schema::create('ujian_setting', function (Blueprint $table) {
+        Schema::create('soal', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('ujian_id');
-            $table->integer('jumlah_soal');
-            $table->boolean('urutan_soal')->default(false);
-            $table->boolean('urutan_pilihan')->default(false);
-            $table->boolean('tampil_nilai')->default(false);
+            $table->longText('uraian');
+            $table->string('image');
+            $table->string('kunci');
+            $table->text('opsi_a');
+            $table->text('opsi_b');
+            $table->text('opsi_c');
+            $table->text('opsi_d');
+            $table->text('opsi_e');
             $table->timestamps();
-
 
             $table->foreign('ujian_id')->references('id')->on('ujian')->onDelete('cascade')->onUpdate('cascade');
         });
@@ -34,6 +37,6 @@ class CreateUjianSettingsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('ujian_settings');
+        Schema::dropIfExists('soals');
     }
 }

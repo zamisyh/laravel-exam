@@ -30,16 +30,15 @@ class Dashboard extends Component
 
     public function render()
     {
-        $data = guru::where('user_id', Auth::user()->id)->get();
+        $user = User::where('id', Auth::user()->id)->first();
+        $data = null;
 
-        return view('livewire.dashboard', compact('data'))->extends('layouts.app')->section('content');
-    }
+        if ($user->getRoleNames()[0] == 'guru') {
+            $data['data']['countSiswa'] = siswa::count();
+        } else {
+            $data['data']['null'] = null;
+        }
 
-
-
-    public function logout()
-    {
-        Auth::logout();
-        return redirect()->route('client.signin');
+        return view('livewire.dashboard', $data)->extends('layouts.app')->section('content');
     }
 }

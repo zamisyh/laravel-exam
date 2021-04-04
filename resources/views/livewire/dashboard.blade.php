@@ -1,5 +1,8 @@
 <div>
-   
+    
+    @section('css')
+        <link rel="stylesheet" href="{{ asset('assets/vendors/iconly/bold.css') }}">
+    @endsection
 
     @if ($openRegisterSiswa)
             @section('title', 'Siswa Next Register')
@@ -35,14 +38,14 @@
                         </div>
                     </div>
                     <section class="section">
-                        <div class="card">
-                            <div class="card-header">
-                                <h4 class="card-title">Example Content</h4>
-                            </div>
-                            <div class="card-body">
-                               
-                            </div>
-                        </div>
+
+                       @role('guru')
+                            @include('livewire.admin.components.guru.info')
+                            @include('livewire.admin.components.guru.recent-soal')                         
+                       @endrole
+                        
+                    
+                       
                     </section>
                 </div>
 

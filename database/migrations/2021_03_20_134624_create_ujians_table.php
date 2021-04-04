@@ -19,7 +19,7 @@ class CreateUjiansTable extends Migration
             $table->unsignedBigInteger('kelas_id');
             $table->unsignedBigInteger('jurusan_id');
             $table->unsignedBigInteger('guru_id');
-            $table->integer('soal');
+            $table->string('judul');
             $table->string('waktu_mulai');
             $table->string('waktu_akhir');
             $table->string('token');

@@ -14,6 +14,7 @@ use App\Http\Livewire\Admin\Src\Guru;
 use App\Http\Livewire\Admin\Src\Siswa as Student;
 use App\Http\Livewire\Settings\Profile;
 use App\Http\Livewire\Settings\ChangeUser;
+use App\Http\Livewire\Admin\Guru\BankSoal;
 
 /*
 |--------------------------------------------------------------------------
@@ -76,6 +77,13 @@ Route::prefix('dashboard')->group(function () {
             });
 
             Route::get('profile/setting', ChangeUser::class)->name('setting');
+
+            Route::group(['middleware' => ['role:guru']], function () {
+                Route::get('bank_soal', BankSoal::class)->name('bank_soal');
+                Route::prefix('create')->group(function () {
+                    Route::get('bank_soal', BankSoal::class)->name('create.bank_soal');
+                });
+            });
         });
     });
 });
