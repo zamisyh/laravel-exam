@@ -8,4 +8,33 @@ use Illuminate\Database\Eloquent\Model;
 class ujian extends Model
 {
     use HasFactory;
+
+    protected $table = 'ujian';
+    protected $fillable = ['judul', 'mapel_id', 'kelas_id', 'guru_id', 'tanggal_mulai', 'tanggal_akhir', 'token', 'status'];
+
+    public function ujian_setting()
+    {
+        return $this->hasOne(ujian_setting::class);
+    }
+
+    public function guru()
+    {
+        return $this->belongsTo(guru::class);
+    }
+
+
+    public function kelas()
+    {
+        return $this->belongsTo(kelas::class);
+    }
+
+    public function mapel()
+    {
+        return $this->belongsTo(mapel::class);
+    }
+
+    public function jurusan()
+    {
+        return $this->belongsTo(jurusan::class);
+    }
 }
