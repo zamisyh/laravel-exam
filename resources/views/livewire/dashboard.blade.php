@@ -1,9 +1,6 @@
 <div>
     
-    @section('css')
-        <link rel="stylesheet" href="{{ asset('assets/vendors/iconly/bold.css') }}">
-    @endsection
-
+  
     @if ($openRegisterSiswa)
             @section('title', 'Siswa Next Register')
             @livewire('admin.components.register-siswa') 
