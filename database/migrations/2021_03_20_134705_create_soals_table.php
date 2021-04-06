@@ -17,7 +17,7 @@ class CreateSoalsTable extends Migration
             $table->id();
             $table->unsignedBigInteger('ujian_id');
             $table->longText('uraian');
-            $table->string('image');
+            $table->string('image')->nullable();
             $table->string('kunci');
             $table->text('opsi_a');
             $table->text('opsi_b');
