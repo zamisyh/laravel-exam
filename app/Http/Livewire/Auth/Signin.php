@@ -23,23 +23,11 @@ class Signin extends Component
         'email.exists' => 'Email is not registered in the database',
     ];
 
-    protected $validationAttributes = [
-        'email' => 'email address'
-    ];
-
-    public function updated($signin)
-    {
-        $this->validateOnly($signin, [
-            'email' => 'email|exists:users,email',
-            'password' => 'min:6',
-        ]);
-    }
-
 
     public function signin()
     {
         $this->validate([
-            'email' => 'required|email',
+            'email' => 'required|email|exists:users,email',
             'password' => 'required|min:6'
         ]);
 

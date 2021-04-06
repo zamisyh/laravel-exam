@@ -22,16 +22,6 @@ class Register extends Component
         return view('livewire.auth.register')->extends('layouts.client')->section('content');
     }
 
-    public function updated($signup)
-    {
-        $this->validateOnly($signup, [
-            'email' => 'email|unique:users,email',
-            'username' => 'min:4',
-            'password' => 'string|min:6',
-            'confirm_password' => 'min:6|same:password'
-        ]);
-    }
-
 
     public function signup()
     {
