@@ -1,5 +1,19 @@
 <div>
    @section('title', 'Bank Soal')
+   @section('css')
+        <link rel="stylesheet" href="{{ asset('assets/vendors/summernote/summernote-lite.min.css') }}">
+        <style>
+            #deleteSoal:hover{
+                cursor: pointer;
+                color: red;
+            }
+
+            #status:hover{
+                cursor: pointer;
+                ;
+            }
+        </style>
+    @endsection
 
    <div id="app">
     <x-sidebar />
@@ -22,7 +36,13 @@
                                         <li class="breadcrumb-item active" aria-current="page">Create
                                         </li>
                                     @endif
-                                    <li class="breadcrumb-item active" aria-current="page">Bank Soal
+                                    @if ($openCreateSoalForm)
+                                        <li class="breadcrumb-item active" aria-current="page">Soal
+                                        </li>
+                                    @else
+                                        <li class="breadcrumb-item active" aria-current="page">Bank Soal
+                                        </li>
+                                    @endif
                                     </li>
                                 </ol>
                             </nav>
@@ -30,17 +50,20 @@
                     </div>
                 </div>
                 <section class="section">
+                    
+                        @if ($openCreateForm)
+                            @include('livewire.admin.guru.create-bank-soal')
+                        @elseif($openCreateSoalForm)
+                            @include('livewire.admin.guru.create-soal')
+                        @else
                     <div class="card">
                         <div class="card-header">
                             <div class="d-flex justify-content-between">
-                                <h4 class="card-title">{{ $openCreateForm ? 'Create Bank Soal' : 'Bank Soal' }}</h4>
+                                <h4 class="card-title">Bank Soal</h4>
                                 <button wire:click='openFormCreateClick' class="btn btn-primary">Create Bank Soal</button>
                             </div>
                         </div>
-                    <div class="card-body">
-                        @if ($openCreateForm)
-                            @include('livewire.admin.guru.create-bank-soal')
-                        @else
+                        <div class="card-body">
                             <div class="table-responsive">
                                 <table class="table table-bordered table-hover table-striped">
                                     <thead>
@@ -52,25 +75,40 @@
                                             <th>Tanggal Mulai</th>
                                             <th>Tanggal Selesai</th>
                                             <th>Waktu</th>
+                                            <th>Status</th>
                                             <th>Actions</th>  
                                         </tr>
                                     </thead>
                                     <tbody>
+                                       @forelse ($data['ujian'] as $item)
                                         <tr>
-                                            <td>1</td>
-                                            <td>UH Matematika</td>
-                                            <td>Matematika</td>
-                                            <td>12 RPL 1</td>
-                                            <td>Tanggal Mulai</td>
-                                            <td>Tanggal Selesai</td>
-                                            <td>Waktu</td>
+                                            <td>{{ $loop->iteration }}</td>
+                                            <td>{{ $item->judul }}</td>
+                                            <td>{{ $item->mapel->nama }}</td>
+                                            <td>{{ $item->kelas->nama }} {{ $item->kelas->jurusan->alias }} {{ $item->kelas->no }}</td>
+                                            <td>{{ Carbon\Carbon::parse($item->tanggal_mulai)->format('d M Y')}}</td>
+                                            <td>{{ Carbon\Carbon::parse($item->tanggal_akhir)->format('d M Y')}}</td>
+                                            <td>{{ $item->ujian_setting->waktu }} Menit</td>
+                                            <td>
+                                                @if ($item->status == false)
+                                                    <span id="status" wire:click='updateStatusDraft({{$item->id}})' class="badge bg-secondary">Draft</span class="status">
+                                                @else
+                                                    <span id="status" wire:click='updateStatusActive({{$item->id}}) 'class="badge bg-success">Active</span class="status">
+                                                @endif
+                                            </td>
                                             <td>
                                                 <div class="d-flex">
-                                                    <button class="btn btn-primary btn-sm"><i class="bi bi-pencil"></i></button>&nbsp;
-                                                    <button class="btn btn-danger btn-sm"><i class="bi bi-trash-fill"></i></button>
+                                                    <button wire:click='openFormSoal({{$item->id}})' class="btn btn-primary btn-sm"><i class="bi bi-pencil"></i></button>&nbsp;
+                                                    <button wire:click='deleteUjian({{$item->id}})' class="btn btn-danger btn-sm"><i class="bi bi-trash-fill"></i></button>
                                                 </div>
-                                            </td>  
+                                            </td>
+
+                                            @empty
+
+                                            <td colspan="9">Ujian Kosong, silahkan buat ujian terlebih dahulu</td>
+
                                         </tr>
+                                       @endforelse
                                     </tbody>
                                 </table>
                             </div>
