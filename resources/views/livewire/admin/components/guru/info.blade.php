@@ -28,7 +28,7 @@
                         </div>
                         <div class="col-md-8">
                             <h6 class="text-muted font-semibold">Total Soal</h6>
-                            <h6 class="font-extrabold mb-0">0</h6>
+                            <h6 class="font-extrabold mb-0">{{ number_format($data['countUjian']) }}</h6>
                         </div>
                     </div>
                 </div>

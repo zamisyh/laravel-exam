@@ -38,6 +38,7 @@ class BankSoal extends Component
     public $uraian, $kunci, $gambar, $a, $b, $c, $d, $e;
 
     public $ujianId;
+    public $pageSize = 5;
 
 
 

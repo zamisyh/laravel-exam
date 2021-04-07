@@ -1,12 +1,46 @@
 <div class="row">
-    <div class="col-8">
+    <div class="col-lg-8">
         <div class="card">
             <div class="card-header">
-                <h4>Recent Soal</h4>
+                <div class="d-flex justify-content-between">
+                    <h4>Recent Soal</h4>
+                    <div>
+                        <select wire:model='perPage' class="form-select">
+                            <option value="3" selected>3</option>
+                            <option value="5">5</option>
+                            <option value="7">7</option>
+                        </select>
+                    </div>
+                </div>
             </div>
-            <div class="card-body">
-                Tes
-            </div>
+          
+           <div class="card-body">
+                <div style="background-color:#f0f0f0; padding:30px; border-radius:10px;">
+                    @foreach ($data['ujian'] as $item)
+                    <hr>
+                    <span>Judul : {{ $item->judul }}</span><br>
+                    <span>Guru : {{ $item->guru->nama }}</span><br>
+                    <span>Mapel : {{ $item->mapel->nama }}</span><br>
+                    <span>Kelas : {{ $item->kelas->nama }} {{ $item->kelas->jurusan->alias }} {{ $item->kelas->no }}</span><br>
+                    <span>Waktu : {{ $item->ujian_setting->waktu }} Menit</span><br>
+                    <span>Token : {{ $item->token }}</span><br>
+                    <span>Tanggal : {{ $item->tanggal_mulai }} - {{ $item->tanggal_akhir }}</span><br>
+                    <span>Status : @if ($item->status == false)
+                        <span class="badge bg-secondary">Draft</span class="status">
+                    @else
+                        <span class="badge bg-success">Active</span class="status">
+                    @endif
+                    </span>
+                @endforeach
+                
+                </div>
+
+                <div class="mt-4 mb-3">
+                    {{ $data['ujian']->links() }}
+                </div>
+           </div>
+
+          
         </div>
     </div>
 

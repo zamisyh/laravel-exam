@@ -2,14 +2,25 @@
     <div class="col-lg-7">
         <div class="card">
             <div class="card-header">
-                <h4 class="card-title">Data Soal</h4>
+                <div class="d-flex justify-content-between">
+                    <h4 class="card-title">Data Soal</h4>
+                    <div>
+                        <select class="form-select" wire:model='pageSize'>
+                            <option value="5" selected>5</option>
+                            <option value="10">10</option>
+                            <option value="15">15</option>
+                            <option value="20">20</option>
+                        </select>
+                    </div>
+                </div>
             </div>
             <div class="card-body">
                 @php
-                  $soals = App\Models\soal::where('ujian_id', $ujianId)->with('ujian')->orderBy('id', 'ASC')->paginate(5);
+                
+                  $soals = App\Models\soal::where('ujian_id', $ujianId)->with('ujian')->orderBy('id', 'ASC')->paginate($pageSize);
                 @endphp
 
-                @forelse ($soals as $soal)
+                @forelse ($soals as $key => $soal)
                     <hr>
                     <div class="d-flex justify-content-between">
                         <span></span>
@@ -22,7 +33,7 @@
                                 </div>
                             @endif
                             <div class="uraian">
-                                {{ $loop->iteration }} . 
+                                {{ $soals->firstItem() + $key}} . 
                                 <span>{{ $soal->uraian }}</span>
                                 
                                 <ul style="list-style: none; margin-top:10px;">
@@ -51,7 +62,10 @@
     <div class="col-lg-5">
         <div class="card">
             <div class="card-header">
-                <h4 class="card-title">Create Soal</h4>
+                <div class="d-flex justify-content-between">
+                    <h4 class="card-title">Create Soal</h4>
+                    <button class="btn btn-success btn-sm">Excel</button>
+                </div> 
             </div>
             <div class="card-body">
                 <div class="form-group">
