@@ -5,6 +5,7 @@ namespace App\Http\Livewire\Admin\Components;
 use Livewire\Component;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
+use Illuminate\Support\Facades\Session;
 
 class Navbar extends Component
 {
@@ -26,6 +27,7 @@ class Navbar extends Component
     public function logout()
     {
         redirect()->route('client.signin');
+        Session::forget('data');
         Auth::logout();
     }
 }
