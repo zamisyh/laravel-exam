@@ -40,6 +40,10 @@
                             @include('livewire.admin.components.guru.info')
                             @include('livewire.admin.components.guru.recent-soal')                         
                        @endrole
+
+                       @role('siswa')
+                            @include('livewire.admin.components.siswa.index')
+                       @endrole
                         
                     
                        
