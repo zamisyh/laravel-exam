@@ -14,11 +14,13 @@
                 </div>
             </div>
           
+          
            <div class="card-body">
                 <div style="background-color:#f0f0f0; padding:30px; border-radius:10px;">
                     @foreach ($data['ujian'] as $item)
                     <hr>
-                    <span>Judul : {{ $item->judul }}</span><br>
+                    <h5>{{ $item->judul }}</h5>
+                    <hr>
                     <span>Guru : {{ $item->guru->nama }}</span><br>
                     <span>Mapel : {{ $item->mapel->nama }}</span><br>
                     <span>Kelas : {{ $item->kelas->nama }} {{ $item->kelas->jurusan->alias }} {{ $item->kelas->no }}</span><br>
@@ -50,17 +52,22 @@
                 <h4>Activity Student</h4>
             </div>
             <div class="card-content pb-4">
-                <div class="recent-message d-flex px-4 py-3">
-                    <div class="avatar avatar-lg">
-                        <img src="assets/images/faces/4.jpg">
+                @forelse ($data['activity'] as $item)
+                    <div class="recent-message d-flex px-4 py-3">
+                        <div class="name ms-4">
+                            <h5 class="mb-1">{{ $item->siswa->nama }}</h5>
+                            <h6 class="text-muted mb-0">{{ $item->created_at->shortRelativeDiffForHumans() }} - 
+                                {{ $item->siswa->kelas->nama }} {{ $item->siswa->jurusan->alias }} {{ $item->siswa->kelas->no }} </h6>
+                                <span>Mengumpulkan <b>{{ $item->ujian->judul }}</b></span>
+                        </div>
                     </div>
-                    <div class="name ms-4">
-                        <h5 class="mb-1">Hank Schrader</h5>
-                        <h6 class="text-muted mb-0">@johnducky</h6>
-                    </div>
-                </div>
+                @empty
+                    No Activity
+                @endforelse
                 <div class="px-4">
-                    <button class='btn btn-block btn-xl btn-light-primary font-bold mt-3'>View More</button>
+                    <button wire:loading.remove wire:click='viewMore' class='btn btn-block btn-dark-primary font-bold mt-3'>View More</button>
+                    <button wire:loading wire:target='viewMore' class='btn btn-block btn-dark-primary font-bold mt-3'>Load..</button>
+                
                 </div>
             </div>
         </div>
