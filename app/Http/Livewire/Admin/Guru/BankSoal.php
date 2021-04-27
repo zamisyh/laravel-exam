@@ -97,6 +97,8 @@ class BankSoal extends Component
                 'mapel_id' => $this->mapel,
                 'kelas_id' => $this->kelas,
                 'guru_id' => $getGuru->id,
+                'created_at' => $this->tanggal_mulai,
+                'updated_at' => $this->tanggal_mulai,
                 'tanggal_mulai' => $this->tanggal_mulai,
                 'tanggal_akhir' => $this->tanggal_selesai,
                 'token' => $this->token,
