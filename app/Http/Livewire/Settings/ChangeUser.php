@@ -25,12 +25,18 @@ class ChangeUser extends Component
 
     public function render()
     {
-       
+
         return view('livewire.settings.change-user')->extends('layouts.app')->section('content');
     }
 
-    public function changePassword() {$this->changePass = true;}
-    public function closePassword() {$this->changePass = false;}
+    public function changePassword()
+    {
+        $this->changePass = true;
+    }
+    public function closePassword()
+    {
+        $this->changePass = false;
+    }
 
 
     public function updateUser($id)
@@ -40,8 +46,8 @@ class ChangeUser extends Component
             'email' => 'required|email',
             'password' => $this->changePass == true ? 'required' : '',
             'confirm_password' => $this->changePass == true ? 'required|same:password' : '',
-          
-           
+
+
         ]);
 
         try {
@@ -64,14 +70,11 @@ class ChangeUser extends Component
                 'showCancelButton' =>  false,
                 'showConfirmButton' =>  false,
             ]);
-           
-            
-            $this->emit('update');
 
+
+            $this->emit('update');
         } catch (\Exception $e) {
             dd($e->getMessage());
         }
-        
     }
 }
-
