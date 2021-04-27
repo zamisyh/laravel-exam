@@ -87,6 +87,13 @@
                             
                         </ul>
                     </li>
+
+                    <li class="sidebar-item">
+                        <a href="{{ route('dashboard.report') }}" class='sidebar-link'>
+                            <i class="bi bi-bar-chart-fill"></i>
+                            <span>Report</span>
+                        </a>
+                    </li>
                 @endrole
                 
             </ul>
