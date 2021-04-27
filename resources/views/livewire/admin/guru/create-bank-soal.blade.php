@@ -100,7 +100,7 @@
 
                         </div>
                         <div class="form-group">
-                            <label for="acak_pilihan">Acak Pilihan</label>
+                            <label for="acak_pilihan">Anti Copas</label>
                             <div class="form-check">
                                 <input wire:model.lazy='acak_pilihan' class="form-check-input @error('acak_pilihan') is-invalid @enderror" type="radio" name="acak_pilihan"
                                     id="acak_pilihan1" value="1">
