@@ -29,7 +29,7 @@
                         <div class="form-group">
                             @if (!empty($soal->image))
                                 <div class="container-fluid">
-                                    <img src="{{ asset('storage/images/soal/' . $soal->image) }}" alt="logo">
+                                    <img src="{{ asset('storage/images/soal/' . $soal->image) }}" class="img-fluid rounded mx-auto d-block">
                                 </div>
                             @endif
                             <div class="uraian">
