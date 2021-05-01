@@ -64,78 +64,99 @@
             <div class="card-header">
                 <div class="d-flex justify-content-between">
                     <h4 class="card-title">Create Soal</h4>
-                    <button class="btn btn-success btn-sm">Excel</button>
+                    <button class="btn btn-success btn-sm" wire:click='openFormExcel()'>Excel</button>
                 </div> 
             </div>
             <div class="card-body">
-                <div class="form-group">
-                    <label for="uraian">Uraian</label>
-                    <textarea rows="5" class="form-control @error('uraian') is-invalid @enderror" wire:model.lazy='uraian'></textarea>
-                    @error('uraian') <span class="text-danger">{{ $message }}</span>@enderror
-                </div>
-                <div class="form-group">
-                    @if ($openGambarForn)
-                        <label for="gambar">Gambar</label>
-                        <input type="file" wire:model.lazy='gambar' class="form-control">
-                        @error('gambar') <span class="text-danger">{{ $message }}</span>@enderror
+                @if ($openCreateExcelForm)
 
-                       <div wire:loading wire:target="gambar">
-                            <span class="spinner-border" role="status"
-                            aria-hidden="true"></span>
-                            <span>Uploading</span>
-                       </div>
+                    <form wire:submit.prevent='upload_excel' enctype="multipart/form-data">
+                        <div class="form-group">
+                            <label for="upload_excel">Upload Excel</label>
+                            <input type="file" wire:model.lazy='file_excel' class="form-control mt-3 @error('file_excel') is-invalid @enderror">
+                            @error('file_excel') <span class="text-danger">{{ $message }}</span>@enderror
+                        </div>
+    
+                        <div class="form-group">
+                            <a href="">Example Template</a>
+                        </div>
+                        
+                        <button class="btn btn-primary">Upload</button>
+                    </form>
+                    
 
-                       <br>
-                       <div>
-                            @if ($gambar)
-                                <img style="height: 100px" src="{{ $gambar->temporaryUrl() }}">
-                            @endif
-                       </div>
-                    @else
-                        <a href="#" wire:click='openGambarClick' class="text-primary">Tambah Gambar ?</a>
-                    @endif
-                </div>
-                <div class="form-group">
-                    <label for="kunci">Kunci Jawaban</label>
-                    <select class="form-control @error('kunci') is-invalid @enderror" wire:model.lazy='kunci'>
-                        <option value="" selected>Pilih</option>
-                        <option value="a">A</option>
-                        <option value="b">B</option>
-                        <option value="c">C</option>
-                        <option value="d">D</option>
-                        <option value="e">E</option>
-                    </select>
-                    @error('kunci') <span class="text-danger">{{ $message }}</span>@enderror
-                </div>
-                <div class="form-group">
-                    <label for="a">Opsi A</label>
-                    <input class="form-control @error('a') is-invalid @enderror" wire:model.lazy='a'>
-                    @error('a') <span class="text-danger">{{ $message }}</span>@enderror
-                </div>
-                <div class="form-group">
-                    <label for="b">Opsi B</label>
-                    <input class="form-control @error('b') is-invalid @enderror" wire:model.lazy='b'>
-                    @error('b') <span class="text-danger">{{ $message }}</span>@enderror
-                </div>
-                <div class="form-group">
-                    <label for="c">Opsi C</label>
-                    <input class="form-control @error('c') is-invalid @enderror" wire:model.lazy='c'>
-                    @error('c') <span class="text-danger">{{ $message }}</span>@enderror
-                </div>
-                <div class="form-group">
-                    <label for="d">Opsi D</label>
-                    <input class="form-control @error('d') is-invalid @enderror" wire:model.lazy='d'>
-                    @error('d') <span class="text-danger">{{ $message }}</span>@enderror
-                </div>
-                <div class="form-group">
-                    <label for="e">Opsi E</label>
-                    <input class="form-control @error('e') is-invalid @enderror" wire:model.lazy='e'>
-                    @error('e') <span class="text-danger">{{ $message }}</span>@enderror
-                </div>
-                <div class="form-group">
-                    <button wire:loading.remove wire:click='saveSoal' class="btn btn-primary btn-block">Save</button>
-                    <button wire:loading wire:target='saveSoal' class="btn btn-primary btn-block">Saving</button>
-                </div>
+                @else
+                    <div class="form-group">
+                        <label for="uraian">Uraian</label>
+                        <textarea rows="5" class="form-control @error('uraian') is-invalid @enderror" wire:model.lazy='uraian'></textarea>
+                        @error('uraian') <span class="text-danger">{{ $message }}</span>@enderror
+                    </div>
+                    <div class="form-group">
+                        @if ($openGambarForn)
+                            <label for="gambar">Gambar</label>
+                            <input type="file" wire:model.lazy='gambar' class="form-control">
+                            @error('gambar') <span class="text-danger">{{ $message }}</span>@enderror
+
+                        <div wire:loading wire:target="gambar">
+                                <span class="spinner-border" role="status"
+                                aria-hidden="true"></span>
+                                <span>Uploading</span>
+                        </div>
+
+                        <br>
+                        
+                        <div>
+                                @if ($gambar)
+                                    <img style="height: 100px" src="{{ $gambar->temporaryUrl() }}">
+                                @endif
+                        </div>
+                        @else
+                            <a href="#" wire:click='openGambarClick' class="text-primary">Tambah Gambar ?</a>
+                        @endif
+                    </div>
+                    <div class="form-group">
+                        <label for="kunci">Kunci Jawaban</label>
+                        <select class="form-control @error('kunci') is-invalid @enderror" wire:model.lazy='kunci'>
+                            <option value="" selected>Pilih</option>
+                            <option value="a">A</option>
+                            <option value="b">B</option>
+                            <option value="c">C</option>
+                            <option value="d">D</option>
+                            <option value="e">E</option>
+                        </select>
+                        @error('kunci') <span class="text-danger">{{ $message }}</span>@enderror
+                    </div>
+                    <div class="form-group">
+                        <label for="a">Opsi A</label>
+                        <input class="form-control @error('a') is-invalid @enderror" wire:model.lazy='a'>
+                        @error('a') <span class="text-danger">{{ $message }}</span>@enderror
+                    </div>
+                    <div class="form-group">
+                        <label for="b">Opsi B</label>
+                        <input class="form-control @error('b') is-invalid @enderror" wire:model.lazy='b'>
+                        @error('b') <span class="text-danger">{{ $message }}</span>@enderror
+                    </div>
+                    <div class="form-group">
+                        <label for="c">Opsi C</label>
+                        <input class="form-control @error('c') is-invalid @enderror" wire:model.lazy='c'>
+                        @error('c') <span class="text-danger">{{ $message }}</span>@enderror
+                    </div>
+                    <div class="form-group">
+                        <label for="d">Opsi D</label>
+                        <input class="form-control @error('d') is-invalid @enderror" wire:model.lazy='d'>
+                        @error('d') <span class="text-danger">{{ $message }}</span>@enderror
+                    </div>
+                    <div class="form-group">
+                        <label for="e">Opsi E</label>
+                        <input class="form-control @error('e') is-invalid @enderror" wire:model.lazy='e'>
+                        @error('e') <span class="text-danger">{{ $message }}</span>@enderror
+                    </div>
+                    <div class="form-group">
+                        <button wire:loading.remove wire:click='saveSoal' class="btn btn-primary btn-block">Save</button>
+                        <button wire:loading wire:target='saveSoal' class="btn btn-primary btn-block">Saving</button>
+                    </div>
+
+                @endif
             </div>
         </div>
     </div>

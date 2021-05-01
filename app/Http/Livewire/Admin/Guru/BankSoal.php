@@ -6,7 +6,6 @@ namespace App\Http\Livewire\Admin\Guru;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 use Livewire\WithPagination;
-
 use App\Models\guru;
 use App\Models\ujian;
 use App\Models\ujian_setting;
@@ -14,7 +13,8 @@ use App\Models\soal;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\File;
-
+use Maatwebsite\Excel\Facades\Excel;
+use App\Imports\SoalImport;
 
 class BankSoal extends Component
 {
@@ -29,13 +29,13 @@ class BankSoal extends Component
     ];
 
     public $viewMoreSetting;
-    public $openCreateForm, $openCreateSoalForm, $openGambarForn;
+    public $openCreateForm, $openCreateSoalForm, $openGambarForn, $openCreateExcelForm;
     public $openFormCreateClick, $closeFormCreateClick, $openGambarClick;
 
     public $judul, $mapel, $kelas, $jumlah_soal, $tanggal_mulai,
         $tanggal_selesai, $waktu, $token, $acak_soal, $acak_pilihan, $tampil_nilai;
 
-    public $uraian, $kunci, $gambar, $a, $b, $c, $d, $e;
+    public $uraian, $kunci, $gambar, $a, $b, $c, $d, $e, $file_excel;
 
     public $ujianId;
     public $pageSize = 5;
@@ -134,6 +134,33 @@ class BankSoal extends Component
     {
         $this->openCreateSoalForm = true;
         $this->ujianId = $id;
+    }
+
+    public function openFormExcel()
+    {
+        $this->openCreateExcelForm = true;
+    }
+
+    public function upload_excel()
+    {
+        $this->validate([
+            'file_excel' => 'required|mimes:xlsx, xls'
+        ]);
+
+        Excel::import(new SoalImport($this->ujianId), $this->file_excel);
+
+        $this->alert('success', 'Succesfully import soal', [
+            'position' =>  'top-end',
+            'timer' =>  3000,
+            'toast' =>  true,
+            'text' =>  '',
+            'confirmButtonText' =>  'Ok',
+            'cancelButtonText' =>  'Cancel',
+            'showCancelButton' =>  false,
+            'showConfirmButton' =>  false,
+        ]);
+
+        $this->openCreateExcelForm = false;
     }
 
     public function saveSoal()
