@@ -24,11 +24,14 @@
                     <hr>
                     <div class="d-flex justify-content-between">
                         <span></span>
-                        <span id="deleteSoal" wire:click='deleteSoal({{$soal->id}})'><i class="bi bi-trash"></i></span>
+                        <div>
+                            <span id="editSoal" wire:click='editSoal({{$soal->id}})'><i class="bi bi-pencil-square"></i></span>
+                            <span id="deleteSoal" wire:click='deleteSoal({{$soal->id}})'><i class="bi bi-trash"></i></span>
+                        </div>
                     </div>
                         <div class="form-group">
                             @if (!empty($soal->image))
-                                <div class="container-fluid">
+                                <div class="container-fluid mb-5">
                                     <img src="{{ asset('storage/images/soal/' . $soal->image) }}" class="img-fluid rounded mx-auto d-block">
                                 </div>
                             @endif
@@ -86,12 +89,16 @@
                     
 
                 @else
+                    
+
                     <div class="form-group">
                         <label for="uraian">Uraian</label>
                         <textarea rows="5" class="form-control @error('uraian') is-invalid @enderror" wire:model.lazy='uraian'></textarea>
                         @error('uraian') <span class="text-danger">{{ $message }}</span>@enderror
                     </div>
                     <div class="form-group">
+                        
+
                         @if ($openGambarForn)
                             <label for="gambar">Gambar</label>
                             <input type="file" wire:model.lazy='gambar' class="form-control">
@@ -152,8 +159,13 @@
                         @error('e') <span class="text-danger">{{ $message }}</span>@enderror
                     </div>
                     <div class="form-group">
-                        <button wire:loading.remove wire:click='saveSoal' class="btn btn-primary btn-block">Save</button>
-                        <button wire:loading wire:target='saveSoal' class="btn btn-primary btn-block">Saving</button>
+                        @if ($openEditForm)
+                            <button wire:loading.remove wire:click='updateSoal({{$editSoalId}})' class="btn btn-primary btn-block">Update</button>
+                            <button wire:loading wire:target='updateSoal({{$editSoalId}})' class="btn btn-primary btn-block">Updating</button>
+                        @else
+                            <button wire:loading.remove wire:click='saveSoal' class="btn btn-primary btn-block">Save</button>
+                            <button wire:loading wire:target='saveSoal' class="btn btn-primary btn-block">Saving</button>
+                        @endif
                     </div>
 
                 @endif
