@@ -29,7 +29,7 @@ class BankSoal extends Component
     ];
 
     public $viewMoreSetting;
-    public $openCreateForm, $openCreateSoalForm, $openGambarForn, $openCreateExcelForm;
+    public $openCreateForm, $openCreateSoalForm, $openGambarForn, $openCreateExcelForm, $openEditForm;
     public $openFormCreateClick, $closeFormCreateClick, $openGambarClick;
 
     public $judul, $mapel, $kelas, $jumlah_soal, $tanggal_mulai,
@@ -37,7 +37,7 @@ class BankSoal extends Component
 
     public $uraian, $kunci, $gambar, $a, $b, $c, $d, $e, $file_excel;
 
-    public $ujianId;
+    public $ujianId, $editSoalId;
     public $pageSize = 5;
 
 
@@ -241,6 +241,70 @@ class BankSoal extends Component
             'showCancelButton' =>  false,
             'showConfirmButton' =>  false,
         ]);
+    }
+
+
+    public function editSoal($id)
+    {
+
+        $data = soal::findOrFail($id);
+
+        $this->uraian = $data->uraian;
+        $this->kunci = $data->kunci;
+        $this->a = $data->opsi_a;
+        $this->b = $data->opsi_b;
+        $this->c = $data->opsi_c;
+        $this->d = $data->opsi_d;
+        $this->e = $data->opsi_e;
+        $this->editSoalId = $data->id;
+
+
+        $this->openEditForm = true;
+    }
+
+    public function updateSoal($id)
+    {
+        $data = soal::findOrFail($id);
+
+        $this->validate([
+            'uraian' => 'required',
+            'kunci' => 'required',
+            'gambar' => $this->openGambarForn == true ? 'required|file|image|mimes:png,jpg,jpeg,webp' : '',
+            'a' => 'required',
+            'b' => 'required',
+            'c' => 'required',
+            'd' => 'required',
+            'e' => 'required'
+        ]);
+
+        try {
+            $nameFile = null;
+
+            if ($this->openGambarForn == true) {
+                $nameFile = strtolower(Str::slug(rand(100, 10000))) . '-' . time() . '.' . $this->gambar->getClientOriginalExtension();
+                $this->gambar->storeAs('public/images/soal', $nameFile);
+            }
+
+            if ($this->openGambarForn == true) {
+                File::delete(public_path('storage/images/soal/' . $data->image));
+            }
+
+            $data->image = $this->openGambarForn == true ? $nameFile : $data->image;
+            $data->uraian = $this->uraian;
+            $data->kunci = $this->kunci;
+            $data->opsi_a = $this->a;
+            $data->opsi_b = $this->b;
+            $data->opsi_c = $this->c;
+            $data->opsi_d = $this->d;
+            $data->opsi_e = $this->e;
+
+            $data->update();
+
+            $this->resetFields();
+            $this->resetForm();
+        } catch (\Exception $e) {
+            dd($e->getMessage());
+        }
     }
 
     public function deleteUjian($id)
