@@ -8,9 +8,14 @@
                 color: red;
             }
 
+            #editSoal:hover{
+                cursor: pointer;
+                color: blue;
+            }
+
             #status:hover{
                 cursor: pointer;
-                ;
+                
             }
         </style>
     @endsection
